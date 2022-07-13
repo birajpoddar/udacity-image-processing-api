@@ -1,5 +1,5 @@
 # Ignore Build folder
-build
+dist
 
 # Ignore Node Modules
 node_modules
