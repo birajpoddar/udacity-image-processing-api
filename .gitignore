@@ -1,0 +1,8 @@
+# Ignore Build folder
+build
+
+# Ignore Node Modules
+node_modules
+
+# Mac Files
+.DS_Store
