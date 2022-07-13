@@ -18,7 +18,7 @@ jasmine.getEnv().addReporter(
       displayNumber: true,
     },
     spec: {
-      displayStacktrace: StacktraceOption.PRETTY,
+      displayStacktrace: StacktraceOption.NONE,
     },
     customProcessors: [CustomProcessor],
   })

@@ -1,6 +1,6 @@
 {
   "spec_dir": "dist/tests",
-  "spec_files": ["**/*.test.js"],
+  "spec_files": ["**/*.test.js", "!smoke/*.test.js"],
   "helpers": ["helpers/**/*.js"],
   "stopSpecOnExpectationFailure": false,
   "random": false
