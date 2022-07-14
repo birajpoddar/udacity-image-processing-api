@@ -5,7 +5,7 @@ describe('Server Tests', () => {
   const request = supertest(app);
 
   it('expects Server is returning StatusCode 200', async () => {
-    const response = await request.get('/');
+    const response = await request.get('/api/images');
     expect(response.statusCode).toBe(200);
   });
 });
