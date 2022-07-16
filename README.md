@@ -2,16 +2,16 @@
 
 ## Basic Scripts
 
-    init        |   Used to initiliaze the project by downloading all the node_modules
-    lint        |   Used to run eslint on src directory
-    prettier    |   Used to runn prettier on src directory
-    build       |   Used to transpile the TS files on src folders to dist directory
-    jasmine     |   Used to run Jasmine Tests in dist/tests directory
-    clean       |   Used to clean the dist folder
-    test-smoke  |   Used to clean & build the solution and perform soke tests
-    test        |   Used to clean & build the solution and than start the tests
-    start-dev   |   Used to run a live version of the app without building it using the nodemon module
-    start       |   Used to start the prod build from dist folder after cleaning & building the solution
+    init        |   Initiliazes the project by downloading all the node_modules
+    lint        |   Runs eslint on src directory and displays error, if any
+    prettier    |   Runs prettier on src directory and prettifies the TS files
+    build       |   Transpiles the TS files on src folders to dist directory
+    jasmine     |   Runs Jasmine Tests in dist/tests directory
+    clean       |   Cleans the dist folder
+    test-smoke  |   Runs Smoke tests after cleaning & building the solution
+    test        |   Runs Unit tests after cleaning & building the solution
+    start-dev   |   Start a live version of the app without building it using the nodemon module
+    start       |   Starts the prod build from dist folder after cleaning & building the solution
 
 ## How to run the Scripts?
 
@@ -28,3 +28,17 @@
 ## Start the application
 
 - To start the project after initialization, run <code>npm run start</code>
+
+## API route
+
+- To navigate to the API, you can use GET method on <code>/api/images?filename=**name**&width=**w**&height=**h**</code>
+
+## Important Considerations while using the API
+
+- When no queries are passed it will throw a 404, NOT FOUND message
+- When valid filename is passed through query params, API will return the full image
+- When valid filename and either valid width or height is paased, it will return a cropped square image of WxW or HxH dimension
+- When valid filename is passed along with valid width and nheight, it will return a cropped image of WxH dimension
+- When valid filename along with either invalid width or height is passed, API will return the full sized image
+- When valid filename along with one valid and other invalid width/height is passed, the API will discard the invalid value and return a square image of valid WxW or HxH dimensions
+- When passing any query param viz. filename/width/height more than once, only the first query param would be processed and the rest would be discarded

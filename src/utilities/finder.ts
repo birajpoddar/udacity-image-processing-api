@@ -1,10 +1,12 @@
 import path from 'path';
+import validator from './validator';
+import fs from 'fs';
 
 const assestsFull = 'assets/full/';
 const assestsResized = 'assets/resized/';
 const imgExt = '.jpg';
 
-const getAssetsPath = (full = false): string => {
+const getAssetsPath = (full: boolean): string => {
   const projPath = path.resolve();
   let assetsPath: string;
   if (full) {
@@ -39,7 +41,7 @@ const getFullImagePath = (queries: ImageQueries.Queries): string => {
 
 const getResizedImagePath = (queries: ImageQueries.Queries): string => {
   const [imgName, width, height] = queries;
-  const assetsPath = getAssetsPath();
+  const assetsPath = getAssetsPath(false);
   const imgPath = path.join(
     assetsPath,
     `${imgName}_${width}_${height}${imgExt}`
@@ -48,9 +50,29 @@ const getResizedImagePath = (queries: ImageQueries.Queries): string => {
   return imgPath;
 };
 
+const createAssetsPath = async (): Promise<boolean> => {
+  const assetsPath = [getAssetsPath(true), getAssetsPath(false)];
+
+  assetsPath.forEach((path) => {
+    if (!validator.isPathExist(path)) {
+      fs.mkdir(path, (err) => {
+        if (err) {
+          console.log(`${path} creation failed : ${err.message}`);
+          return false;
+        }
+
+        console.log(`${path} created successfully`);
+      });
+    }
+  });
+
+  return true;
+};
+
 export default {
   getAssetsPath,
   getImagePath,
   getFullImagePath,
   getResizedImagePath,
+  createAssetsPath,
 };

@@ -1,24 +1,23 @@
 import validator from './validator';
 import finder from './finder';
 import resizer from './resizer';
-import caches from '../api/caches';
 
 const generatePath = async (
-  queries: ImageQueries.Queries,
-  path: string
+  queries: ImageQueries.Queries
 ): Promise<string | null> => {
-  let imgPath: string;
+  const imgLoc = finder.getImagePath(queries);
   const [file, ,] = queries;
 
-  if (file != undefined && validator.isFullImageExist(queries)) {
-    imgPath = finder.getImagePath(queries);
-
-    if (!validator.isPathExists(imgPath)) {
-      const flag = await resizer.resizeImage(queries, imgPath);
-      flag ?? caches.setCachedImg(path, imgPath);
+  // If full/resized image exists, get the image location of the file to be served
+  // prettier-ignore
+  if (file !== undefined && (validator.isFullImageExist(queries) || validator.isPathExist(imgLoc))) {
+    if (!validator.isPathExist(imgLoc)) {
+      await resizer.resizeImage(queries, imgLoc);
+    } else {
+      console.log('Existing Image served');
     }
 
-    return imgPath ?? null;
+    return imgLoc ?? null;
   }
 
   return null;

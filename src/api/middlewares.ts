@@ -1,47 +1,82 @@
-import { Request, Response, NextFunction } from 'express';
+import { ImageExpress } from 'types/modules/express';
 import converter from '../utilities/converter';
 import generator from '../utilities/generator';
 import caches from './caches';
+import validator from '../utilities/validator';
+import finder from '../utilities/finder';
 
-const imageQueries = (req: Request, res: Response, next: NextFunction) => {
+const setImageQueries = (
+  req: ImageExpress.Request,
+  res: ImageExpress.Response,
+  next: ImageExpress.NextFunction
+): void => {
   const imgQueries = converter.queryParams(req.query);
 
   // Store Query and stringified path
-  req.ImageQueries = imgQueries;
-  req.ImagePath = converter.stringifyQueryParams(imgQueries);
+  req.imageQueries = imgQueries;
+  req.imagePath = converter.stringifyQueryParams(imgQueries);
 
   next();
 };
 
-const cachePath = (req: Request, res: Response, next: NextFunction) => {
-  const cachedPath = caches.getCachedImg(req.ImagePath);
+const getCachedPath = (
+  req: ImageExpress.Request,
+  res: ImageExpress.Response,
+  next: ImageExpress.NextFunction
+): void => {
+  const key = req.imagePath;
+  const cachedPath = caches.getCachedImg(key);
 
-  // If cached Image available, display cached image or go to next middleware
-  if (cachedPath != null) {
+  // If cached Image available, display cached image or delete the key from cache and go to next middleware
+  if (cachedPath !== null && validator.isPathExist(cachedPath)) {
+    console.log('Cached image served');
     res.status(200).sendFile(cachedPath);
   } else {
+    caches.delCachedImg(key);
     next();
   }
 };
 
-const resizeImgPath = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const imgPath = (await generator.generatePath(
-    req.ImageQueries,
-    req.ImagePath
-  )) as string;
+const createAssetsPath = async (
+  req: ImageExpress.Request,
+  res: ImageExpress.Response,
+  next: ImageExpress.NextFunction
+): Promise<void> => {
+  await finder.createAssetsPath();
 
-  // Store Image lOcation in Request
-  req.ImageLocation = imgPath;
+  next();
+};
+
+const resizeImgPath = async (
+  req: ImageExpress.Request,
+  res: ImageExpress.Response,
+  next: ImageExpress.NextFunction
+): Promise<void> => {
+  const imgLoc = await generator.generatePath(req.imageQueries);
+
+  // Store Image location in Request and add to cache
+  if (imgLoc !== null) {
+    req.imageLocation = imgLoc;
+    caches.setCachedImg(req.imagePath, imgLoc);
+  }
+
+  next();
+};
+
+const logPathVisited = (
+  req: ImageExpress.Request,
+  res: ImageExpress.Response,
+  next: ImageExpress.NextFunction
+): void => {
+  console.log(`${req.method}: ${req.originalUrl}`);
 
   next();
 };
 
 export default {
-  imageQueries,
-  cachePath,
+  setImageQueries,
+  getCachedPath,
+  createAssetsPath,
   resizeImgPath,
+  logPathVisited,
 };

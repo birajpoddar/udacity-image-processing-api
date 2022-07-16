@@ -1,23 +1,30 @@
 import express from 'express';
-import caches from './caches';
+import { ImageExpress } from 'types/modules/express';
 import middlewares from './middlewares';
 
-const routes = express.Router();
+const routes: ImageExpress.IRouter = express.Router();
 
 // adding Middlewares
-routes.use(middlewares.imageQueries);
-routes.use(middlewares.cachePath);
+routes.use(middlewares.setImageQueries);
+routes.use(middlewares.getCachedPath);
+routes.use(middlewares.createAssetsPath);
 routes.use(middlewares.resizeImgPath);
 
-routes.get('/', async (req, res): Promise<void> => {
-  const imgLoc = req.ImageLocation;
+routes.get(
+  '/',
+  async (
+    req: ImageExpress.Request,
+    res: ImageExpress.Response
+  ): Promise<void> => {
+    const imgLoc = req.imageLocation;
 
-  if (imgLoc != undefined) {
-    caches.setCachedImg(req.ImagePath, imgLoc);
-    res.status(200).sendFile(imgLoc);
-  } else {
-    res.status(404).send('Image cannot be found');
+    if (imgLoc !== undefined) {
+      res.status(200).sendFile(imgLoc);
+    } else {
+      console.log('Image Not Found');
+      res.status(404).send('Image cannot be found');
+    }
   }
-});
+);
 
 export default routes;

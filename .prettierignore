@@ -1,3 +1,11 @@
+// Ignore git directory
 **/.git
+
+// Ignore node-modules directory
 **/node_modules
+
+// Ignore build directory
 **/build
+
+// Ignore json files
+**/*.json

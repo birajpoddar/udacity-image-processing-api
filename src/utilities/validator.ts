@@ -13,7 +13,7 @@ const isResizedImageExist = (queries: ImageQueries.Queries): boolean => {
   return fs.existsSync(imgPath);
 };
 
-const isPathExists = (path: string): boolean => {
+const isPathExist = (path: string): boolean => {
   return fs.existsSync(path);
 };
 
@@ -28,6 +28,6 @@ const isUndefined = (str: string): boolean => {
 export default {
   isFullImageExist,
   isResizedImageExist,
-  isPathExists,
+  isPathExist,
   isUndefined,
 };

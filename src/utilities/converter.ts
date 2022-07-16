@@ -1,3 +1,4 @@
+import { ImageExpress } from 'types/modules/express';
 import validator from './validator';
 
 const keys = ['filename', 'width', 'height'];
@@ -23,10 +24,12 @@ const toInt = (str: string): number => {
   return isNaN(num) ? -1 : num;
 };
 
-const queryParams = (queries: qs.ParsedQs): ImageQueries.Queries => {
-  const file = queries.filename as string;
-  const width = queries.width as string;
-  const height = queries.height as string;
+const queryParams = (
+  queries: ImageExpress.RequestQueries
+): ImageQueries.Queries => {
+  const file = queries.filename;
+  const width = queries.width;
+  const height = queries.height;
 
   const fileStr = trimString(file);
   let widthNum = toInt(width);
@@ -38,8 +41,8 @@ const queryParams = (queries: qs.ParsedQs): ImageQueries.Queries => {
 };
 
 const normalizeSize = (width: number, height: number): ImageQueries.Sizes => {
-  const wflag = width < 0;
-  const hFlag = height < 0;
+  const wflag = width < 1;
+  const hFlag = height < 1;
 
   // XOR Operation
   if (wflag ? !hFlag : hFlag) {
@@ -65,5 +68,6 @@ export default {
   trimString,
   toInt,
   queryParams,
+  normalizeSize,
   stringifyQueryParams,
 };

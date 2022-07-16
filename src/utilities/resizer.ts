@@ -6,7 +6,8 @@ const resizeImage = async (
   queries: ImageQueries.Queries,
   imgLoc: string
 ): Promise<boolean> => {
-  if (validator.isPathExists(imgLoc)) {
+  if (validator.isPathExist(imgLoc)) {
+    console.log('Existing Image served');
     return true;
   }
 
@@ -24,6 +25,7 @@ const resize = async (
     .resize(width, height)
     .toFile(imgLoc)
     .then(() => {
+      console.log('Processed Image served');
       return true;
     })
     .catch(() => {
