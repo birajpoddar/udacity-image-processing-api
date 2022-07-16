@@ -21,8 +21,8 @@ routes.get(
     if (imgLoc !== undefined) {
       res.status(200).sendFile(imgLoc);
     } else {
-      console.log('Image Not Found');
-      res.status(404).send('Image cannot be found');
+      console.log('Image not found');
+      res.status(404).send('Image not found');
     }
   }
 );

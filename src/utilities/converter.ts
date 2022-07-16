@@ -21,7 +21,7 @@ const toInt = (str: string): number => {
   const trimmed = trimString(str);
   const num = parseInt(trimmed);
 
-  return isNaN(num) ? -1 : num;
+  return isNaN(num) || num <= 0 ? 0 : num;
 };
 
 const queryParams = (
@@ -41,8 +41,8 @@ const queryParams = (
 };
 
 const normalizeSize = (width: number, height: number): ImageQueries.Sizes => {
-  const wflag = width < 1;
-  const hFlag = height < 1;
+  const wflag = width < 0;
+  const hFlag = height < 0;
 
   // XOR Operation
   if (wflag ? !hFlag : hFlag) {

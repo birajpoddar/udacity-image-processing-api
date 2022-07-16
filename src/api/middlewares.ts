@@ -29,7 +29,7 @@ const getCachedPath = (
 
   // If cached Image available, display cached image or delete the key from cache and go to next middleware
   if (cachedPath !== null && validator.isPathExist(cachedPath)) {
-    console.log('Cached image served');
+    console.log('Cached Image served');
     res.status(200).sendFile(cachedPath);
   } else {
     caches.delCachedImg(key);

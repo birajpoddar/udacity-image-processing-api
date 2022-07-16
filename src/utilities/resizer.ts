@@ -18,21 +18,24 @@ const resize = async (
   queries: ImageQueries.Queries,
   imgLoc: string
 ): Promise<boolean> => {
+  let flag = false;
   const [, width, height] = queries;
   const imgFullPath = finder.getFullImagePath(queries);
 
-  await sharp(imgFullPath)
-    .resize(width, height)
-    .toFile(imgLoc)
-    .then(() => {
-      console.log('Processed Image served');
-      return true;
-    })
-    .catch(() => {
-      return false;
-    });
+  if (!(width === 0 || height === 0)) {
+    await sharp(imgFullPath)
+      .resize(width, height)
+      .toFile(imgLoc)
+      .then(() => {
+        console.log('Processed Image served');
+        flag = true;
+      })
+      .catch(() => {
+        flag = false;
+      });
+  }
 
-  return false;
+  return flag;
 };
 
 export default {

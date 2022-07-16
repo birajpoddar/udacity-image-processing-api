@@ -35,10 +35,11 @@
 
 ## Important Considerations while using the API
 
-- When no queries are passed it will throw a 404, NOT FOUND message
+- When no queries are passed it will throw a <code>404, NOT FOUND</code> message
 - When valid filename is passed through query params, API will return the full image
 - When valid filename and either valid width or height is paased, it will return a cropped square image of WxW or HxH dimension
-- When valid filename is passed along with valid width and nheight, it will return a cropped image of WxH dimension
-- When valid filename along with either invalid width or height is passed, API will return the full sized image
-- When valid filename along with one valid and other invalid width/height is passed, the API will discard the invalid value and return a square image of valid WxW or HxH dimensions
+- When valid filename is passed along with valid width and height, it will return a cropped image of WxH dimension
+- When valid filename along with either invalid width or height is passed, API will return <code>404, NOT FOUND</code> message
+- When valid filename along with one valid and other invalid width/height is passed, the API will throw <code>404, NOT FOUND</code> message
 - When passing any query param viz. filename/width/height more than once, only the first query param would be processed and the rest would be discarded
+- Width and Height less than or equal to 0 viz. <code>/api/images?filename=**name**&width=**0**&height=**0**</code> will result in a <code>404, NOT FOUND</code> message
