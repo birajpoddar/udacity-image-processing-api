@@ -9,3 +9,6 @@ node_modules
 
 # Ignore Processed Images
 assets/resized/**
+
+# Istanbul Output Files
+.nyc_output

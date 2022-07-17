@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: ['birajpoddar-nodejs']
+    branches: ['feature-codecov']
   pull_request:
     branches: ['main']
 
