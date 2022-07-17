@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -34,4 +34,4 @@ jobs:
       - name: Run unit tests
         run: npm run test
       - name: Upload Coverage reports to Codecov
-        run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov -f ./.nyc_output/*.json
+        run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov -s ./.nyc_output
