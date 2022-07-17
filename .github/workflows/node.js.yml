@@ -29,14 +29,9 @@ jobs:
         run: npm ci
       - name: Build solution
         run: npm run build
-      - name: Start smoke tests
+      - name: Run smoke tests
         run: npm run test-smoke
-      - name: Start unit tests
+      - name: Run unit tests
         run: npm run test
-      - uses: codecov/codecov-action@v3
-        with:
-          files: ./nyc_output/processinfo/*.json
-          flags: unittests # optional
-          name: codecov-unittests # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+      - name: Upload Coverage reports to Codecov
+        run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov -f ./.nyc_output/*.json
