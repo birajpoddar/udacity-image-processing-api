@@ -33,6 +33,7 @@ jobs:
       - uses: codecov/codecov-action@v3
         with:
           flags: unittests # optional
+          directory: .nyc_output
           name: codecov-unittests # optional
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
