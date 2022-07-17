@@ -29,10 +29,4 @@ jobs:
       - run: npm run build
       - run: npm run test-smoke
       - run: npm run test
-      - uses: codecov/codecov-action@v3
-        with:
-          flags: unittests # optional
-          directory: .nyc_output
-          name: codecov-unittests # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov
