@@ -35,7 +35,7 @@ jobs:
         run: npm run test
       - uses: codecov/codecov-action@v3
         with:
-          files: ./nyc_output/*.json
+          files: nyc_output/processinfo/*.json
           flags: unittests # optional
           name: codecov-unittests # optional
           fail_ci_if_error: true # optional (default = false)
