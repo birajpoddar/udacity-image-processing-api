@@ -1,5 +1,7 @@
 # ImageProcessing API
 
+[![CodeFactor](https://www.codefactor.io/repository/github/birajpoddar/udacity-image-processing-api/badge)](https://www.codefactor.io/repository/github/birajpoddar/udacity-image-processing-api) [![Node.js CI](https://github.com/birajpoddar/udacity-image-processing-api/actions/workflows/node.js.yml/badge.svg?branch=birajpoddar-nodejs)](https://github.com/birajpoddar/udacity-image-processing-api/actions/workflows/node.js.yml)
+
 ## Basic Scripts
 
     init        |   Initiliazes the project by downloading all the node_modules
