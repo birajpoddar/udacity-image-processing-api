@@ -3,11 +3,7 @@
 
 name: Node.js CI
 
-on:
-  push:
-    branches: ['birajpoddar-nodejs']
-  pull_request:
-    branches: ['main']
+on: ['push', 'pull_request']
 
 jobs:
   build:
@@ -25,8 +21,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test-smoke
-      - run: npm run test
-      - run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov
+      - name: Configure CI
+        run: npm ci
+      - name: Build Solution
+        run: npm run build
+      - name: Execute Smoke Tests
+        run: npm run test-smoke
+      - name: Execute Unit Tests
+        run: npm run test
+      - uses: codecov/codecov-action@v3
+        name: Upload Coverage Reports to Codecov
+        with:
+          flags: unittests # optional
+          name: unit-test-coverage # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)

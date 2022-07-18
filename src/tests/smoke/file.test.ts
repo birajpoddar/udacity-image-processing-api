@@ -1,4 +1,6 @@
 import fs from 'fs';
+
+// File Paths
 const pack = './package.json';
 const packLog = './package-lock.json';
 const lint = './.eslintrc';
@@ -14,8 +16,9 @@ const jasmineDir = './spec/support';
 const jasmine = './spec/support/jasmine.json';
 const jasmineReporter = './src/tests/helpers/reporter.ts';
 const nodeDir = './node_modules';
+const istanbul = './.nycrc';
 
-const fileTests = describe('Important File Exists', () => {
+describe('Important File Exists', () => {
   describe('Package File Tests', () => {
     it('expects package.json exists', () => {
       const flag = fs.existsSync(pack);
@@ -60,7 +63,7 @@ const fileTests = describe('Important File Exists', () => {
   });
 
   describe('Readme File Tests', () => {
-    it('expects readme.md exists', () => {
+    it('expects README.md exists', () => {
       const flag = fs.existsSync(readMe);
       expect(flag).toBeTrue();
     });
@@ -98,6 +101,13 @@ const fileTests = describe('Important File Exists', () => {
 
     it('expects jasmine-spec-reporter Config exists', () => {
       const flag = fs.existsSync(jasmineReporter);
+      expect(flag).toBeTrue();
+    });
+  });
+
+  describe('Istanbul Tests', () => {
+    it('expects .nycrc exists', () => {
+      const flag = fs.existsSync(istanbul);
       expect(flag).toBeTrue();
     });
   });

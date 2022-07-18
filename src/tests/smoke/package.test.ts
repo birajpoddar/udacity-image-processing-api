@@ -1,4 +1,4 @@
-import fs, { promises as fsPromises } from 'fs';
+import { promises as fs } from 'fs';
 import { PackageJson } from 'type-fest';
 const pack = './package.json';
 
@@ -7,7 +7,7 @@ describe('Package.json Tests', () => {
   let packJson: PackageJson;
 
   beforeAll(async () => {
-    packStr = await fsPromises.readFile(pack, 'utf-8');
+    packStr = await fs.readFile(pack, 'utf-8');
   });
 
   it('expects package.json contains configuration', () => {
