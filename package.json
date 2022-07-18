@@ -8,7 +8,7 @@
     "lint": "npx eslint src/**",
     "prettier": "prettier src/** --write",
     "build": "npx tsc",
-    "jasmine": "nyc --require ts-node/register jasmine",
+    "jasmine": "nyc --require ts-node/register --reporter=lcov jasmine",
     "clean": "rm -rf dist",
     "test-smoke": "npm run clean && npm run build && jasmine 'dist/tests/smoke/*.test.js' --fail-fast",
     "test": "npm run clean && npm run build && npm run jasmine",

@@ -12,3 +12,7 @@ assets/resized/**
 
 # Istanbul Output Files
 .nyc_output
+coverage
+
+# Codecov Uploader
+codecov

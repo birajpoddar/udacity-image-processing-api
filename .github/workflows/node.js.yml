@@ -27,11 +27,11 @@ jobs:
           cache: 'npm'
       - name: Configure CI
         run: npm ci
-      - name: Build solution
+      - name: Build Solution
         run: npm run build
-      - name: Run smoke tests
+      - name: Execute Smoke Tests
         run: npm run test-smoke
-      - name: Run unit tests
+      - name: Execute Unit Tests
         run: npm run test
-      - name: Upload Coverage reports to Codecov
-        run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov -s ./.nyc_output
+      - name: Upload Coverage Reports to Codecov
+        run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov -s ./coverage
