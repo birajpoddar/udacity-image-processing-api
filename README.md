@@ -1,6 +1,6 @@
 # ImageProcessing API
 
-[![CodeFactor](https://www.codefactor.io/repository/github/birajpoddar/udacity-image-processing-api/badge)](https://www.codefactor.io/repository/github/birajpoddar/udacity-image-processing-api) [![Node.js CI](https://github.com/birajpoddar/udacity-image-processing-api/actions/workflows/node.js.yml/badge.svg?branch=birajpoddar-nodejs)](https://github.com/birajpoddar/udacity-image-processing-api/actions/workflows/node.js.yml) [![codecov](https://codecov.io/gh/birajpoddar/udacity-image-processing-api/branch/feature-codecov/graph/badge.svg?token=SSHRHOI1GR)](https://codecov.io/gh/birajpoddar/udacity-image-processing-api)
+[![CodeFactor](https://www.codefactor.io/repository/github/birajpoddar/udacity-image-processing-api/badge)](https://www.codefactor.io/repository/github/birajpoddar/udacity-image-processing-api) [![Node.js CI](https://github.com/birajpoddar/udacity-image-processing-api/actions/workflows/node.js.yml/badge.svg)](https://github.com/birajpoddar/udacity-image-processing-api/actions/workflows/node.js.yml) [![codecov](https://codecov.io/gh/birajpoddar/udacity-image-processing-api/branch/feature-codecov/graph/badge.svg?token=SSHRHOI1GR)](https://codecov.io/gh/birajpoddar/udacity-image-processing-api)
 
 ## Basic Scripts
 
