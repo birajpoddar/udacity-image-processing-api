@@ -1,2 +1,2 @@
 # Redirect all request to api/images route
-/* /api/images 200
+/* / 200
