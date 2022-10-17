@@ -14,7 +14,7 @@ const port = process.env.PORT != undefined ? parseInt(process.env.PORT) : 3000;
 cache.on('expired', caches.setCacheAgain);
 
 // Logs any path visited on the app
-app.use(middlewares.logPathVisited).use('/api/images', routes);
+app.use(middlewares.logPathVisited).use('/', routes);
 
 // Listens for incoming request on port
 app.listen(port, (): void => {
