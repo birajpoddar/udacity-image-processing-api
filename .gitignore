@@ -16,3 +16,5 @@ coverage
 
 # Codecov Uploader
 codecov
+# Local Netlify folder
+.netlify

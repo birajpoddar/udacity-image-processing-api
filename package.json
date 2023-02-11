@@ -13,7 +13,8 @@
     "test-smoke": "npm run clean && npm run build && jasmine 'dist/tests/smoke/*.test.js' --fail-fast",
     "test": "npm run clean && npm run build && npm run jasmine",
     "start-dev": "nodemon src/server.ts",
-    "start": "npm run clean && npm run build && node dist/server.js"
+    "start": "node dist/server.js",
+    "clean-start": "npm run clean && npm run build && node dist/server.js"
   },
   "keywords": [
     "image",

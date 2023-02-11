@@ -1,0 +1,2 @@
+# Redirect all request to api/images route
+/ / 200
